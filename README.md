@@ -5,6 +5,7 @@ The database stores information about board games, their categories, authors and
 Exemplary queries:
 
 Select board games and their authors:
+
 SELECT
 board_games.title AS "Tytuł",
 creators.creator_name AS "Twórca"
@@ -16,6 +17,7 @@ ON
 board_games.creator_id = creators.creator_id;
 
 Sort board games by category:
+
 SELECT
 board_games.title AS "Tytuł",
 creators.creator_name AS "Twórca",
@@ -39,6 +41,7 @@ ORDER BY
 categories.category_name;
 
 Count board games that belongs to particular category:
+
 SET @requested_category_id = 6;
 SELECT
 COUNT(DISTINCT board_games.title) AS "Ilosc gier podanej kategorii"
@@ -52,7 +55,8 @@ categories ON game_categories.category_id = categories.category_id
 WHERE
 categories.category_id = @requested_category_id;
 
-Select board games that are available for partcicular 
+Select board games that are available for partcicular number of players:
+
 SET @requested_player_count = 5;
 SELECT
 bg.title AS "Tytuł",
@@ -77,6 +81,8 @@ AND @requested_player_count <= bg.max_player_count
 GROUP BY
 go.board_game_id
 ORDER BY bg.title ASC;
+
+Change user's email:
 
 SET @EMAIL = "user_2@user.com";
 SET @new_email = "new_email@user.com";
